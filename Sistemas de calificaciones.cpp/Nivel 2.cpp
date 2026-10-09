@@ -15,6 +15,11 @@ int main() {
         cout << "Opción: ";
         cin >> opcion;
 
+        while (opcion < 1 || opcion > 3) {
+            cout << "Opcion invalida. Ingresa una opcion del 1 al 3: ";
+            cin >> opcion;
+        }
+
         cin.ignore();
 
         switch (opcion) {
@@ -36,30 +41,33 @@ int main() {
                 cout << "Nombre del estudiante: ";
                 getline(cin, nombre);
 
-                cout << "Edad: ";
-                cin >> edad;
-
-                while (edad < 0 || edad > 120) {
-                    cout << "Edad invalida. Intenta de nuevo: ";
+                do {
+                    cout << "Edad: ";
                     cin >> edad;
-                }
 
-                cout << "Cuantas calificaciones deseas registrar?: ";
-                cin >> cantidadCalifs;
+                    if (edad < 0 || edad > 120) {
+                        cout << "Edad invalida. Intenta de nuevo." << endl;
+                    }
+                } while (edad < 0 || edad > 120);
 
-                while (cantidadCalifs <= 0) {
-                    cout << "Cantidad invalida. Intenta de nuevo: ";
+                do {
+                    cout << "Cuantas calificaciones deseas registrar?: ";
                     cin >> cantidadCalifs;
-                }
+
+                    if (cantidadCalifs <= 0) {
+                        cout << "Cantidad invalida. Intenta de nuevo." << endl;
+                    }
+                } while (cantidadCalifs <= 0);
 
                 for (int i = 1; i <= cantidadCalifs; i++) {
-                    cout << "Calificacion " << i << ": ";
-                    cin >> calificacion;
-
-                    while (calificacion < 0 || calificacion > 10) {
-                        cout << "Calificacion invalida. Ingresa una nota entre 0 y 10: ";
+                    do {
+                        cout << "Calificacion " << i << ": ";
                         cin >> calificacion;
-                    }
+
+                        if (calificacion < 0 || calificacion > 10) {
+                            cout << "Calificacion invalida. Ingresa una nota entre 0 y 10." << endl;
+                        }
+                    } while (calificacion < 0 || calificacion > 10);
 
                     suma = suma + calificacion;
 
@@ -112,15 +120,10 @@ int main() {
             case 3:
                 cout << "\nSaliendo del sistema. Hasta luego!" << endl;
                 break;
-
-            default:
-                cout << "\nOpcion invalida. Por favor, intente de nuevo." << endl;
-                break;
         }
 
     } while (opcion != 3);
 
     return 0;
 }
-
 
